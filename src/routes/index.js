@@ -2,8 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import NewsView from '../views/NewsView.vue'
 import JobsView from '../views/JobsView.vue'
 import AskView from '../views/AskView.vue'
-import UserView from '../views/UserView.vue'
-import ItemView from '../views/ItemView.vue'
 
 const routes = [
   {
@@ -21,14 +19,6 @@ const routes = [
   {
     path: '/ask',
     component: AskView
-  },
-  {
-    path: '/user',
-    component: UserView
-  },
-  {
-    path: '/item',
-    component: ItemView
   }
 ];
 
