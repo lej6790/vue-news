@@ -1,13 +1,20 @@
 <template>
   <div>
-    <div v-for="user in this.$store.state.news">{{ user.title }}</div>
+    <p v-for="item in fetchedNews">
+      <a :href="item.url" target="_blank">
+        {{ item.title }}
+      </a>
+      <small>{{ item.time_ago }} by {{ item.user }}</small>
+    </p>
   </div>
 </template>
 
 <script>
-import { fetchNewsList } from '../api/index.js'
-
+import { mapGetters } from 'vuex'
 export default {
+  computed: {
+    ...mapGetters(['fetchedNews'])
+  },
   created() {
     this.$store.dispatch('FETCH_NEWS');
   }

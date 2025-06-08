@@ -1,29 +1,28 @@
 import { createStore } from 'vuex'
-import { fetchNewsList } from '../api'
+import mutations from './mutations.js'
+import actions from './actions.js'
 
 const store = createStore({
     state() {
         return {
-            news: []
+            news: [],
+            jobs: [],
+            ask: []
         };
     },
-    mutations: {
-        SET_NEWS(state, news) {
-            state.news = news;
+    getters: {
+        fetchedAsk(state) {
+            return state.ask;
+        },
+        fetchedJobs(state) {
+            return state.jobs;
+        },
+        fetchedNews(state) {
+            return state.news;
         }
     },
-    actions: {
-        FETCH_NEWS(context) {
-            fetchNewsList()
-                .then(response => {
-                    console.log(response.data);
-                    context.commit('SET_NEWS', response.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        }
-    }
+    mutations,
+    actions
 });
 
 export default store;
