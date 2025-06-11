@@ -7,7 +7,9 @@ const store = createStore({
         return {
             news: [],
             jobs: [],
-            ask: []
+            ask: [],
+            user: {},
+            item: {},
         };
     },
     getters: {
