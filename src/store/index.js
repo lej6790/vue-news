@@ -21,6 +21,9 @@ const store = createStore({
         },
         fetchedNews(state) {
             return state.news;
+        },
+        fetchedItem(state) {
+            return state.item;
         }
     },
     mutations,
