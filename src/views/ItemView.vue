@@ -1,32 +1,35 @@
 <template>
   <div>
     <section>
-      <div class="user-container">
-        <div>
-          <i class="fa-solid fa-user"></i>
-        </div>
-        <div class="user-description">
+      <user-profile>
+        <!-- 
+          Vue 3에서는 더 이상 slot 속성을 직접 사용하지 않고 v-slot:name 또는 #name 문법 사용.
+         -->
+        <template #username>
           <router-link :to="`/user/${fetchedItem.user}`">
             {{ fetchedItem.user }}
           </router-link>
-          <div class="time">
-            {{ fetchedItem.time_ago }}
-          </div>
-        </div>
-      </div>
+        </template>
+        <template #time>{{ 'Posted ' + fetchedItem.time_ago }}</template>
+      </user-profile>
+    </section>
+    <section>
       <h2>{{ fetchedItem.title }}</h2>
     </section>
     <section>
-      <div v-html="fetchedItem.content">
-      </div>
+      <div v-html="fetchedItem.content"></div>
     </section>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex';
+import UserProfile from '@/components/UserProfile.vue'
 
 export default {
+  components: {
+    UserProfile,
+  },
   computed: {
     ...mapGetters(['fetchedItem']),
   },

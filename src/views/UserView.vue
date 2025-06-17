@@ -1,9 +1,16 @@
 <template>
   <div>
-    <user-profile :info="userInfo"></user-profile>
-    <!-- <p>name: {{ userInfo.id }}</p>
-    <p>karma: {{ userInfo.karma }}</p>
-    <p>created: {{ userInfo.created }}</p> -->
+    <user-profile>
+      <template #username>
+        {{ userInfo.id }}
+      </template>
+      <template #time>
+        <span>{{ 'Joined ' + userInfo.created }}, </span>
+      </template>
+      <template v-slot:karma>
+        <span>{{ userInfo.karma }}</span>
+      </template>
+    </user-profile>
   </div>
 </template>
 
@@ -21,12 +28,7 @@ export default {
   },
   created() {
     const userName = this.$route.params.id;
-    // axios.get(`https://api.hnpwa.com/v0/user/${this.$route.params.id}.json`);
     this.$store.dispatch('FETCH_USER', userName);
   },
 }
 </script>
-
-<style>
-
-</style>
