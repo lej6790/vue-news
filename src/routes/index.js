@@ -4,6 +4,7 @@ import JobsView from '../views/JobsView.vue'
 import AskView from '../views/AskView.vue'
 import UserView from '../views/UserView.vue'
 import ItemView from '../views/ItemView.vue'
+import createListView from '../views/CreateListView.js'
 
 const routes = [
   {
@@ -13,17 +14,20 @@ const routes = [
   {
     path: '/news',
     name: 'news',
-    component: NewsView
+    // component: NewsView,
+    component: createListView('NewsView'),
   },
   {
     path: '/jobs',
     name: 'jobs',
-    component: JobsView
+    // component: JobsView,
+    component: JobsView,
   },
   {
     path: '/ask',
     name: 'ask',
-    component: AskView
+    // component: AskView,
+    component: createListView('AskView'),
   },
   {
     path: '/user/:id',
