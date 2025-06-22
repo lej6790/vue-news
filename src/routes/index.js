@@ -1,10 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import NewsView from '../views/NewsView.vue'
-import JobsView from '../views/JobsView.vue'
-import AskView from '../views/AskView.vue'
 import UserView from '../views/UserView.vue'
 import ItemView from '../views/ItemView.vue'
-import createListView from '../views/CreateListView.js'
+import createListView from '../views/CreateListView.js'//createListView.js is HOC(High Order Component)
 
 const routes = [
   {
@@ -14,19 +11,16 @@ const routes = [
   {
     path: '/news',
     name: 'news',
-    // component: NewsView,
     component: createListView('NewsView'),
   },
   {
     path: '/jobs',
     name: 'jobs',
-    // component: JobsView,
-    component: JobsView,
+    component: createListView('JobsView'),
   },
   {
     path: '/ask',
     name: 'ask',
-    // component: AskView,
     component: createListView('AskView'),
   },
   {
