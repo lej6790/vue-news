@@ -7,12 +7,12 @@ export default {
         setTimeout(() => {
         // dispatch는 항상 Promise를 반환
         this.$store.dispatch('FETCH_LIST', this.$route.name)
-            .then(() => {
-            console.log('fetched news');
-            bus.emit('end:spinner');
+            .then((data) => {
+                console.log('fetched');
+                bus.emit('end:spinner');
             })
             .catch((error) => {
-            console.log(error);
+                console.log(error);
             });
         }, 3000);
     }
