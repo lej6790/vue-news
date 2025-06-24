@@ -7,7 +7,7 @@ export default {
         setTimeout(() => {
         // dispatch는 항상 Promise를 반환
         this.$store.dispatch('FETCH_LIST', this.$route.name)
-            .then((data) => {
+            .then(() => {
                 console.log('fetched');
                 bus.emit('end:spinner');
             })
