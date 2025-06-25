@@ -19,18 +19,14 @@ const routes = [
     component: NewsView,
     // component: createListView('NewsView'),
     beforeEnter: (to, from, next) => {
-        bus.emit('start:spinner');
-        setTimeout(() => {
+      bus.emit('start:spinner');
+      setTimeout(() => {
         // dispatch는 항상 Promise를 반환
         store.dispatch('FETCH_LIST', to.name)
-            .then(() => {
-                console.log('fetched');
-                bus.emit('end:spinner');
-                next();
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+          .then(() => next())
+          .catch((error) => {
+            console.log(error);
+          });
         }, 3000);
     },
   },
@@ -39,12 +35,34 @@ const routes = [
     name: 'jobs',
     component: JobsView,
     // component: createListView('JobsView'),
+    beforeEnter: (to, from, next) => {
+      bus.emit('start:spinner');
+      setTimeout(() => {
+        // dispatch는 항상 Promise를 반환
+        store.dispatch('FETCH_LIST', to.name)
+          .then(() => next())
+          .catch((error) => {
+              console.log(error);
+          });
+      }, 3000);
+    },
   },
   {
     path: '/ask',
     name: 'ask',
     component: AskView,
     // component: createListView('AskView'),
+    beforeEnter: (to, from, next) => {
+      bus.emit('start:spinner');
+      setTimeout(() => {
+        // dispatch는 항상 Promise를 반환
+        store.dispatch('FETCH_LIST', to.name)
+          .then(() => next())
+          .catch((error) => {
+              console.log(error);
+          });
+      }, 3000);
+    },
   },
   {
     path: '/user/:id',
