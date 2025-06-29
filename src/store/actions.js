@@ -8,27 +8,24 @@ import {
 } from '../api'
 
 export default {
-    FETCH_NEWS({ commit }) {
-        return fetchNewsList()
-            .then(response => {
-                commit('SET_NEWS', response.data);
-                return response;
-            })
-            .catch(error => console.log(error));
+    async FETCH_NEWS(context) {
+        const response = await fetchNewsList();
+        context.commit('SET_NEWS', response.data);
+        return response;
     },
-    FETCH_JOBS({ commit }) {
-        return fetchJobsList()
-            .then(({ data }) => {
-                commit('SET_JOBS', data);
-            })
-            .catch(error => console.log(error));
+    async FETCH_JOBS(context) {
+        try {
+            const response = await fetchJobsList();
+            context.commit('SET_JOBS', response.data);
+            return response;   
+        } catch (error) {
+            console.log(error);
+        }
     },
-    FETCH_ASK({ commit }) {
-        return fetchAskList()
-            .then(({ data }) => {
-                commit('SET_ASK', data);
-            })
-            .catch(error => console.log(error));
+    async FETCH_ASK({ commit }) {
+        const response = await fetchAskList();
+        commit('SET_ASK', response.data);
+        return response;
     },
     FETCH_USER({ commit }, name) {
         return fetchUserInfo(name)
@@ -44,12 +41,9 @@ export default {
         })
         .catch(error => console.log(error));
     },
-    FETCH_LIST({ commit }, pageName) {
-        return fetchList(pageName)
-            .then((response) => {
-                commit('SET_LIST', response.data);
-                return response;
-            })
-            .catch(error => console.log(error));
+    async FETCH_LIST({ commit }, pageName) {
+        const response = await fetchList(pageName);
+        commit('SET_LIST', response.data);
+        return response;
     },
 }
